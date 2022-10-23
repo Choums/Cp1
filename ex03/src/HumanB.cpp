@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaidel <chaidel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:56:16 by chaidel           #+#    #+#             */
-/*   Updated: 2022/10/22 18:03:16 by chaidel          ###   ########.fr       */
+/*   Updated: 2022/10/23 15:56:21 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	HumanB::attack() const
 	std::cout << this->_name << " attacks with their " << this->_wpn->getType() << std::endl;
 }
 
-void	HumanB::setWeapon(Weapon wpn)
+void	HumanB::setWeapon(Weapon &wpn)
 {
 	this->_wpn = &wpn;
 }
