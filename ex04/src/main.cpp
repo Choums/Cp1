@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: chaidel <chaidel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 15:58:41 by root              #+#    #+#             */
-/*   Updated: 2022/10/23 18:53:30 by root             ###   ########.fr       */
+/*   Updated: 2022/10/26 16:45:27 by chaidel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,21 @@ int	main(int ac, char **av)
 	file.append(".replace");
 	std::ofstream	ofs(file.c_str());
 	/*----	Init done	----*/
+	/*----	Get stream	----*/
+	std::ostringstream	buff;
+	// buff << ifs.rdbuf();
 	std::string	word;
-	int			num;
-	char		wsp;
-	while (ifs >> word >> num >> wsp)
-	{
-		std::cout << word << num << wsp;
-	}
+	std::getline(ifs, word);
+	buff << word;
+	std::getline(ifs, word);
+	buff << word;
+	// std::cout << word << std::endl;
+	std::cout << buff.str() << std::endl;
+	// do
+	// {
+	// 	buff.str() >> word;
+	// } while (word);
+	
 	std::cout << "----stop----" << std::endl;
 	return (0);
 }

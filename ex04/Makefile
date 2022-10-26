@@ -1,4 +1,4 @@
-NAME    = Sed
+NAME    = sed
 OS		= $(shell uname)
 
 # directories
