@@ -6,7 +6,7 @@
 /*   By: chaidel <chaidel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 15:58:41 by root              #+#    #+#             */
-/*   Updated: 2022/10/26 16:45:27 by chaidel          ###   ########.fr       */
+/*   Updated: 2022/10/31 18:26:16 by chaidel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,28 @@ bool	check_args(std::string file, std::string s1, std::string s2)
 	return (true);
 }
 
-/*
- *	3 args:
- *			-> fichier	
- *			-> string s1
- * 			-> string s2
- * --------------------------------------
- * 1-	Vérif file puis créer une copie file.replace
- * 2-	Dans file.replace s1 sera remplacée par s2 et inversement
- * --------------------------------------
- * 
-*/
+bool	is_space(int c)
+{
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (true);
+	return (false);
+}
+
+void	getword(std::string &str, std::ifstream &ifs)
+{
+	char	c;
+
+	while (ifs.get(c))
+	{
+		if (is_space(c))
+		{
+			str.push_back(c);
+			return ;
+		}
+		str.push_back(c);
+	}
+}
+
 int	main(int ac, char **av)
 {
 	if (ac != 4)
@@ -52,29 +63,37 @@ int	main(int ac, char **av)
 	if (!check_args(file, s1, s2))
 		return (1);
 	std::ifstream	ifs(file.c_str());
-	if (!ifs)
+	if (!ifs.is_open())
 	{
-		std::cout << "Error\nInexistant file" << std::endl;
+		std::cout << "Error\nInvalid file" << std::endl;
 		return (1);
 	}
 	file.append(".replace");
 	std::ofstream	ofs(file.c_str());
 	/*----	Init done	----*/
 	/*----	Get stream	----*/
-	std::ostringstream	buff;
-	// buff << ifs.rdbuf();
 	std::string	word;
-	std::getline(ifs, word);
-	buff << word;
-	std::getline(ifs, word);
-	buff << word;
-	// std::cout << word << std::endl;
-	std::cout << buff.str() << std::endl;
-	// do
-	// {
-	// 	buff.str() >> word;
-	// } while (word);
-	
-	std::cout << "----stop----" << std::endl;
+	size_t		pos;
+
+	do
+	{
+		word.clear();
+		getword(word, ifs);
+		if (word.find(s1) != std::string::npos)
+		{
+			pos = word.find(s1);
+			word.erase(pos, s1.size());
+			word.insert(pos, s2);
+		}
+		else if (word.find(s2) != std::string::npos)
+		{
+			pos = word.find(s2);
+			word.erase(pos, s2.size());
+			word.insert(pos, s1);
+		}
+		ofs << word;
+	} while (!word.empty());	
+	ifs.close();
+	ofs.close();
 	return (0);
 }
