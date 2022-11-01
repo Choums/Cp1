@@ -6,7 +6,7 @@
 /*   By: chaidel <chaidel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 15:58:41 by root              #+#    #+#             */
-/*   Updated: 2022/10/31 18:26:16 by chaidel          ###   ########.fr       */
+/*   Updated: 2022/11/01 17:46:13 by chaidel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	check_args(std::string file, std::string s1, std::string s2)
 
 bool	is_space(int c)
 {
-	if ((c >= 9 && c <= 13) || c == 32)
+	if ((c >= 9 && c <= 13))
 		return (true);
 	return (false);
 }
@@ -47,6 +47,32 @@ void	getword(std::string &str, std::ifstream &ifs)
 			return ;
 		}
 		str.push_back(c);
+	}
+}
+
+/*
+ *	Cherche dans la str l'occurence donnee
+ *	Une fois trouve, elle est remplacee par dans la str
+*/
+void	replace(std::string	&str, std::string s1, std::string s2)
+{
+	size_t	pos(0);
+	size_t	new_pos(0);
+
+	if (str.empty())
+		return ;
+	while (true)
+	{
+		new_pos = str.find(s1, pos);
+		if (new_pos != std::string::npos)
+		{
+			str.erase(new_pos, s1.size());
+			str.insert(new_pos, s2);
+			new_pos += s2.size();
+		}
+		else
+			return ;
+		pos = new_pos + 1;
 	}
 }
 
@@ -73,26 +99,14 @@ int	main(int ac, char **av)
 	/*----	Init done	----*/
 	/*----	Get stream	----*/
 	std::string	word;
-	size_t		pos;
 
 	do
 	{
 		word.clear();
 		getword(word, ifs);
-		if (word.find(s1) != std::string::npos)
-		{
-			pos = word.find(s1);
-			word.erase(pos, s1.size());
-			word.insert(pos, s2);
-		}
-		else if (word.find(s2) != std::string::npos)
-		{
-			pos = word.find(s2);
-			word.erase(pos, s2.size());
-			word.insert(pos, s1);
-		}
+		replace(word, s1, s2);
 		ofs << word;
-	} while (!word.empty());	
+	} while (!word.empty());
 	ifs.close();
 	ofs.close();
 	return (0);
