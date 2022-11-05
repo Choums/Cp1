@@ -1,4 +1,4 @@
-NAME    = sed
+NAME    = harl
 OS		= $(shell uname)
 
 # directories
@@ -8,6 +8,7 @@ OBJDIR        =    ./obj
 
 # src / obj files
 SRC        =	main.cpp\
+				Harl.cpp
 				
 
 OBJ        = $(addprefix $(OBJDIR)/,$(SRC:.cpp=.o))
