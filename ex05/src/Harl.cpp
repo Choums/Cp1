@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: chaidel <chaidel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 18:30:54 by root              #+#    #+#             */
-/*   Updated: 2022/11/06 19:58:28 by root             ###   ########.fr       */
+/*   Updated: 2022/11/07 15:59:55 by chaidel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ void	Harl::complain(std::string level)
 								&Harl::info,
 								&Harl::error};
 	Harl harl;
-	(harl.*ptr[atoi(level.c_str())])();
+	int	lvl = atoi(level.c_str());
+	if (lvl >= 1 && lvl <= 4)
+		(harl.*ptr[lvl - 1])();
 }
 
 void	Harl::debug(void)

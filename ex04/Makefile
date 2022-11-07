@@ -8,7 +8,7 @@ OBJDIR        =    ./obj
 
 # src / obj files
 SRC        =	main.cpp\
-				
+				utils.cpp
 
 OBJ        = $(addprefix $(OBJDIR)/,$(SRC:.cpp=.o))
 
