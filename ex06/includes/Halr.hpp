@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Halr.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: chaidel <chaidel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:50:37 by root              #+#    #+#             */
-/*   Updated: 2022/11/05 20:24:09 by root             ###   ########.fr       */
+/*   Updated: 2022/11/07 12:03:20 by chaidel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@
 #include <cstdlib>
 
 class	Harl;
+
+enum Level {
+	Lvl_empty = -1,
+	Lvl_Invalid = 0,
+	Lvl1 = 1,
+	Lvl2 = 2,
+	Lvl3 = 3,
+	Lvl4 = 4
+};
 
 class Harl {
 	public:
@@ -32,5 +41,7 @@ class Harl {
 	void	info(void);
 	void	error(void);
 };
+
+Level	option(std::string str);
 
 #endif
