@@ -6,7 +6,7 @@
 /*   By: chaidel <chaidel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 18:30:54 by root              #+#    #+#             */
-/*   Updated: 2022/11/07 15:59:55 by chaidel          ###   ########.fr       */
+/*   Updated: 2022/11/14 16:05:39 by chaidel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	Harl::complain(std::string level)
 	int	lvl = atoi(level.c_str());
 	if (lvl >= 1 && lvl <= 4)
 		(harl.*ptr[lvl - 1])();
+	else std::cout << "[ Digit 0 to 3 needed ]" << std::endl;
 }
 
 void	Harl::debug(void)

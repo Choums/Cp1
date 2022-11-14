@@ -6,7 +6,7 @@
 /*   By: chaidel <chaidel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:50:37 by root              #+#    #+#             */
-/*   Updated: 2022/11/07 12:03:20 by chaidel          ###   ########.fr       */
+/*   Updated: 2022/11/07 16:19:12 by chaidel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ enum Level {
 class Harl {
 	public:
 
-	Harl(void);
-	~Harl(void);
-	
-	void	complain(std::string level);
+		Harl(void);
+		~Harl(void);
+		
+		void	complain(std::string level);
 	
 	private:
-	void	debug(void);
-	void	warning(void);
-	void	info(void);
-	void	error(void);
+		void	debug(void);
+		void	warning(void);
+		void	info(void);
+		void	error(void);
 };
 
 Level	option(std::string str);
